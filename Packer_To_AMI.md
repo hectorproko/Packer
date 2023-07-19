@@ -76,20 +76,24 @@ data "amazon-ami" "latest_base_image" {
   most_recent = true
 }
 
+variable "app_name" {
+  type    = string
+  default = "nginx"
+}
+
 locals {
-    app_name = "nginx"
-    ami_id   = data.amazon-ami.latest_base_image.id
+  ami_id = data.amazon-ami.latest_base_image.id
 }
 
 source "amazon-ebs" "nginx" {
-  ami_name      = "PACKER-DEMO-${local.app_name}"
+  ami_name      = "PACKER-DEMO-${var.app_name}"
   instance_type = "t2.micro"
   region        = "us-east-1"
-  source_ami    = local.ami_id
+  source_ami    = "${local.ami_id}"
   ssh_username  = "ec2-user"
   tags = {
     Env  = "DEMO"
-    Name = "PACKER-DEMO-${local.app_name}"
+    Name = "PACKER-DEMO-${var.app_name}"
   }
 }
 
