@@ -113,6 +113,15 @@ build {
 **Source Block:** Configures the AMI creation process with settings like instance type, region, and SSH access details.  
 **Build Block:** Specifies how the image should be provisioned, and processed. Here, a shell script (*script.sh*) is used for provisioning, and a Vagrant post-processor is added to the workflow.  
 
+**script.sh** contains:
+```bash
+#!/bin/bash
+sudo yum -y update
+sudo yum install -y nginx
+sudo chkconfig nginx on
+```
+
+
 I have all these files in a directory named shared. This directory is set up to synchronize with the Vagrant virtual machine (VM). Specifically, the contents of the shared directory on the host are mirrored within the /home/vagrant/shared directory inside the VM.  
 
 The Vagrantfile contains the configuration that establishes this synchronization:
