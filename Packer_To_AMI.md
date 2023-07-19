@@ -169,3 +169,12 @@ packer build vm.pkr.hcl
 After a successful build, the **AMI** is created in **AWS**:
 
 ![AMI AWS](images/Packer_To_AMI/AMI_Created.png)
+
+
+---
+
+### Credits
+
+This project was inspired by the article ["Packer Tutorial For Beginners – Automate AMI Creation"](https://devopscube.com/packer-tutorial-for-beginners/) written by Bibin Wilson on January 5, 2023.
+
+---
