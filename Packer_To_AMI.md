@@ -1,14 +1,14 @@
 # Packer To AMI
 
 
-This project uses **Vagrant** as a test environment to run Packer within a virtual machine. The primary goal is to produce custom Amazon Machine Images (**AMI**s) for **AWS**. 
+This project uses **Vagrant** as a test environment to run **Packer** within a virtual machine. The primary goal is to produce custom Amazon Machine Images (**AMI**s) for **AWS**. 
 
 
 
 ## Vagrant Environment: 
 
 
-This **Vagrant** configuration is aimed at setting up an environment with **AWS CLI** and HashiCorp's Packer. The virtual environment will run on an "ubuntu/bionic64" base box and facilitate the **AWS CLI**'s configuration based on the user's input for access and secret keys. Once the **AWS CLI** is configured, it runs a test to list objects in S3, ensuring the setup is successful. Additionally, the script installs **Packer**, a tool used to create machine and container images for multiple platforms.
+This **Vagrant** configuration is aimed at setting up an environment with **AWS CLI** and HashiCorp's **Packer**. The virtual environment will run on an "ubuntu/bionic64" base box and facilitate the **AWS CLI**'s configuration based on the user's input for access and secret keys. Once the **AWS CLI** is configured, it runs a test to list objects in S3, ensuring the setup is successful. Additionally, the script installs **Packer**, a tool used to create machine and container images for multiple platforms.
 
 ```bash
 puts "Please enter your YOUR_ACCESS_KEY:"
