@@ -1,14 +1,14 @@
 # Packer To AMI
 
 
-This project uses Vagrant as a test environment to run Packer within a virtual machine. The primary goal is to produce custom Amazon Machine Images (AMIs) for AWS. 
+This project uses **Vagrant** as a test environment to run Packer within a virtual machine. The primary goal is to produce custom Amazon Machine Images (**AMI**s) for **AWS**. 
 
 
 
 ## Vagrant Environment: 
 
 
-This Vagrant configuration is aimed at setting up an environment with AWS CLI and HashiCorp's Packer. The virtual environment will run on an "ubuntu/bionic64" base box and facilitate the AWS CLI's configuration based on the user's input for access and secret keys. Once the AWS CLI is configured, it runs a test to list objects in S3, ensuring the setup is successful. Additionally, the script installs Packer, a tool used to create machine and container images for multiple platforms.
+This **Vagrant** configuration is aimed at setting up an environment with **AWS CLI** and HashiCorp's Packer. The virtual environment will run on an "ubuntu/bionic64" base box and facilitate the **AWS CLI**'s configuration based on the user's input for access and secret keys. Once the **AWS CLI** is configured, it runs a test to list objects in S3, ensuring the setup is successful. Additionally, the script installs **Packer**, a tool used to create machine and container images for multiple platforms.
 
 ```bash
 puts "Please enter your YOUR_ACCESS_KEY:"
@@ -62,7 +62,7 @@ end
 
 
 ## Packer Template:
-This Packer template is geared towards automating the creation of custom Amazon Machine Images (AMIs) for AWS. It fetches the most recent RHEL-8 AMI and provisions it with custom configurations, eventually wrapping it up into a Vagrant box as well.
+This **Packer template** is geared towards automating the creation of custom Amazon Machine Images (**AMI**s) for **AWS**. It fetches the most recent RHEL-8 **AMI** and provisions it with custom configurations, eventually wrapping it up into a Vagrant box as well.
 
 ```bash
 data "amazon-ami" "latest_base_image" {
@@ -108,10 +108,10 @@ build {
 
 
 **Key Components:**  
-**Data Source:** Fetches the most recent version of RHEL-8 AMI.  
-**Locals:** Defines commonly used variables, notably the name of the application (nginx) and the fetched AMI ID.  
-**Source Block:** Configures the AMI creation process with settings like instance type, region, and SSH access details.  
-**Build Block:** Specifies how the image should be provisioned, and processed. Here, a shell script (*script.sh*) is used for provisioning, and a Vagrant post-processor is added to the workflow.  
+**Data Source:** Fetches the most recent version of RHEL-8 **AMI**.  
+**Locals:** Defines commonly used variables, notably the name of the application (nginx) and the fetched **AMI ID**.  
+**Source Block:** Configures the **AMI** creation process with settings like instance type, region, and SSH access details.  
+**Build Block:** Specifies how the image should be provisioned, and processed. Here, a shell script (*script.sh*) is used for provisioning, and a **Vagrant** post-processor is added to the workflow.  
 
 **script.sh** contains:
 ```bash
@@ -122,9 +122,9 @@ sudo chkconfig nginx on
 ```
 
 
-I have all these files in a directory named shared. This directory is set up to synchronize with the Vagrant virtual machine (VM). Specifically, the contents of the shared directory on the host are mirrored within the /home/vagrant/shared directory inside the VM.  
+I have all these files in a directory named shared. This directory is set up to synchronize with the **Vagrant** virtual machine (VM). Specifically, the contents of the shared directory on the host are mirrored within the `/home/vagrant/shared` directory inside the VM.  
 
-The Vagrantfile contains the configuration that establishes this synchronization:
+The **Vagrant**file contains the configuration that establishes this synchronization:
 ``` bash
   config.vm.synced_folder "./shared", "/home/vagrant/shared"
 ```
@@ -139,11 +139,11 @@ vagrant@AWSCLI:~/shared$ tree
 
 1 directory, 2 files
 ```
-*This exists in the same directory as the Vagrantfile*
+*This exists in the same directory as the **Vagrantfile***
 
 It reveals:  
 A sub-directory named script which contains a shell script `script.sh`.  
-A Packer template file `vm.pkr.hcl`.
+A **Packer template** file `vm.pkr.hcl`.
 
 This structure means that any changes made to the files within the shared directory on the host machine will be immediately reflected inside the VM at `/home/vagrant/shared`. This synchronization makes it easier to work with and edit files, as changes can be made on the host and then instantly tested or deployed within the VM.  
 
