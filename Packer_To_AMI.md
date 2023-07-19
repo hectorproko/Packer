@@ -152,3 +152,20 @@ A **Packer template** file `vm.pkr.hcl`.
 This structure means that any changes made to the files within the shared directory on the host machine will be immediately reflected inside the VM at `/home/vagrant/shared`. This synchronization makes it easier to work with and edit files, as changes can be made on the host and then instantly tested or deployed within the VM.  
 
 
+To validate the Packer configuration, run:
+```bash
+packer validate vm.pkr.hcl
+```
+
+Output:
+> The configuration is valid.
+
+
+To execute the build based on the configuration:
+```bash
+packer build vm.pkr.hcl
+```
+
+After a successful build, the **AMI** is created in **AWS**:
+
+![AMI AWS](images/Packer_To_AMI/AMI_Created.png)
